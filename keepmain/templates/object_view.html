@@ -1,0 +1,60 @@
+{% load static %}
+
+
+{% for o in objects %}
+<div class="blurr_other" id="object-{{o.pk}}">
+    <div class="object_container">
+        <div class="obj_title">{{o.thing_name}}</div>
+        <div class="obj_img_and_buttons">
+
+            <div class="obj_img">
+                {% if o.image == '' %}
+                    <img src="/media/photo-placeholder.svg" alt="">
+                {% else %}
+                    <img src="{{o.image.url}}" alt="">
+                {% endif %}  
+            </div>
+
+            <div class="obj_buttons" id="objButtonFor-{{o.pk}}">
+            {% if o.owner != request.user%}
+                    {% if o.borrowed and o.current_borrower == request.user%}
+                        <div class="form-submit flex_end_button" id="borrow-button-{{o.pk}}-container"> 
+                            <button id="request-{{o.pk}}-return">Return</button>
+                        </div>
+                    {% elif o.borrowed and o.current_borrower != request.user%}
+                        <div class="form-submit-disabled flex_end_button"> 
+                            <button disabled>BORROWED BY OTHER USER</button>
+                        </div>
+                    {% else %}
+                        <div class="form-submit flex_end_button" id="borrow-button-{{o.pk}}-container"> 
+                            <button id="borrow-button-{{o.pk}}">Borrow</button>
+                        </div>
+                        <div id="borrow-option-{{o.pk}}" class="transaction_option">
+                            {% include "object_borrow_form.html" %}
+                        </div>
+                    {% endif %}
+
+            {% else %}
+                    <div class="form-submit flex_end_button" id="lend-button-{{o.pk}}-container">
+                        <button id="lend-button-{{o.pk}}">Lend</button>
+                    </div>
+                    
+                    <div id="lend-option-{{o.pk}}" class="transaction_option">
+                    {% include "object_lend_form.html" %}         
+                    </div>
+            {% endif %}
+                
+            </div>
+        </div>
+        
+        <div class="obj_details">
+        <hr>
+            <p><span><strong>OWNER</strong> {{o.owner}}</span></p>
+            <p><span><strong>ID:</strong> {{o.pk}}</span></p>
+            <p><span><strong>SN:</strong> {{o.serial_no}}</span></p>
+            <p><span><strong>ADDED:</strong> {{o.date_added}}</span></p>
+            <p><span><strong>CONDITION:</strong> {{o.condition}}</span></p>
+        </div>
+    </div>
+</div>
+{% endfor %}

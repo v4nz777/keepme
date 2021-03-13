@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block body %}
+    <div id="requestUser" style="display:none;">{{ request.user }}</div>
+    <div class="profile-area">{% include 'profile.html' %}</div>
+
+    <div class="contents-area">{% include 'contents.html' %}</div>
+
+    {% include 'modal_add_new.html' %}
+    {% include 'object_view.html' %}
+
+    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'notifier.js' %}"></script>
+
+{% endblock body %}

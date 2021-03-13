@@ -1,0 +1,19 @@
+{% load static %}
+
+
+<form action="{% url 'lend' %}" method="post" id="lendForm-{{o.pk}}">
+        {% csrf_token %}
+        <input id="input-thing" type="text" class="hidden" value='{{o}}' name='thing'>
+        <input id="input-borrower" type="text" name="borrower" placeholder="borrower">
+        {{lend_form.as_p}}
+        <div class="sbs_buttons">
+
+                <div class="form-cancel">
+                        <button type="button" id="lend-button-{{o.pk}}-cancel">cancel</button>
+                </div>
+                <div class="form-submit">
+                        <button type="submit">confirm</button>
+                </div>
+        </div>
+            
+</form>

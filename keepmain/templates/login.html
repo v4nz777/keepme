@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Sign In!
+{% endblock title %}
+
+
+
+{% block body %}
+
+    {{ login_notif }}
+    <div class="form-container">
+        <h2 class="text-center form-title">SIGN IN</h2>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+                
+                <div class="form-input login-spacing">
+                    <input type="text" name="username" placeholder="Username...">
+                </div>      
+                <div class="form-input login-spacing">
+                    <input type="password" name="password" placeholder="Password...">
+                </div>
+                <div type="submit" class="form-submit">
+                    <button>Sign In</button>
+                </div>
+        </form>
+        
+        <div class="form-footer">
+            <hr class="form-separator">
+            <h3 class="text-center">
+                <a class="form-link" href="{% url 'register' %}">
+                    Sign Up
+                </a>
+            </h3>
+        </div>
+    </div>
+    
+
+    
+{% endblock body %}

@@ -1,0 +1,47 @@
+{% load static %}
+<nav class="navbar">
+    <img class="menu" src="{% static 'menu-button.svg' %}" alt="menu">
+    <div class="menu-contents">
+        <div class="notif-mini" id="notifAreaMini">     
+        </div>
+        <div>
+            <hr>
+        </div>
+        <div class="links-mini">
+            <a class="link-logout" href="{% url 'logout' %}">Logout</a>  
+        </div>
+        
+    </div>
+    <div class="flex-left">
+        <a href="{% url 'index' %}">
+            <img class="logo" src="{% static 'logo.svg' %}" alt="logo">
+        </a> 
+    </div>
+
+    <div class="flex-mid">
+        <form action="{% url 'search' %}" method="post">
+        {% csrf_token %}
+            <div class="link-search">
+                <input class="search" type="text" name="query" placeholder="Search...">
+                <button id="searchButton"><img class="search" src="{% static 'search.svg' %}" alt=""></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="flex-right">
+        <div id="notif-area">
+            <a href="#" id="notif-button" type="media_type">
+                <img class="notif-bell" src="{% static 'notif-bell.svg' %}" alt="">
+                <div class="notif-count-container"><span id="notif-count"></span></div>
+                
+            </a>
+            <div id="notif-bar-outer">
+                <span class="centered-item"><strong>TRANSACTIONS</strong></span>
+                <div id="notif-bar">
+                
+                </div>
+            </div>
+        </div>
+        <a class="link-logout" href="{% url 'logout' %}">Logout</a>         
+    </div>
+</nav>

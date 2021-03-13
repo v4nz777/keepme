@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration
+{% endblock title %}
+
+{% block body %}
+    {{ registration_notif }}
+    <div class="form-container">
+        <h2 class="text-center form-title">SIGN UP</h2>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-input register-spacing">
+                <input id="userName" type="text" name="username" placeholder="Enter Username...">
+            </div>
+            <div class="form-input register-spacing">
+                <input id="passWord" type="password" name="password" placeholder="Enter Password...">
+            </div>
+            <div class="form-input register-spacing">
+                <input id="pwConfirmation" type="password" name="confirmation" placeholder="Confirm Password...">
+            </div>
+            <div class="form-input register-spacing">
+                <input id="eMail" type="email" name="email" placeholder="Enter Email...">
+            </div>
+            
+            <div type="submit" class="form-submit register-spacing">
+                    <button>Sign Up</button>
+            </div>
+        </form>
+        <div class="form-footer">
+            <hr class="form-separator">
+            <h3 class="text-center">
+                <a class="form-link" href="{% url 'login' %}">
+                    Sign In
+                </a>
+            </h3>
+        </div>
+    </div>
+{% endblock body %}
+

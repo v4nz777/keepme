@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+{% if num_results >= 1 %}
+<span class="search-main-text">
+    <span class="search-colored">{{ num_results }}</span>
+     users found for query: 
+     <span class="search-colored">{{ query }}</span>
+</span>
+
+{% else %}
+<span class="search-main-text">
+    <span class="search-colored">NO</span>
+     users found for query: 
+     <span class="search-colored">{{ query }}</span>
+     , Try Different Keyword!
+</span>
+{% endif %}
+
+
+{% for i in results %}
+    <p class="li-item">
+        
+        
+        <div class="search-result-item">
+            <!--avatar-->
+            <div class="search-avatar-box">
+                <a href="{% url 'profile' user=i %}">
+                <img class="search-result-avatar" 
+                src="{% if i.avatar == '' %}/media/avatar.png{% else %}{{ i.avatar.url }}{% endif %}" alt="">
+                </a>
+                
+            </div>
+            
+            <!--user's name-->
+            <a class="seach-link" href="{% url 'profile' user=i %}">
+                {{i}}
+            </a>
+        </div>
+        
+        
+    </p> 
+{% endfor %}
+
+
+{% endblock body %}
+
+

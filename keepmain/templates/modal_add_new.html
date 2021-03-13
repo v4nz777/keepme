@@ -1,0 +1,15 @@
+{% load static %}
+
+<form action="{% url 'add_new_item' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="blurr_addNewItem">
+        <div id="add_new_form">
+            <img class="x-button" src="{% static 'close.svg' %}" alt="x-button" id="close_addNewItem">
+            <h2 class="text-center control-text color-green"> ADD NEW OBJECT</h2>
+            {{ thing_form.as_p }}
+            <div class="form-submit">
+            <button type="submit">ADD</button>
+            </div>
+        </div>
+    </div>
+</form>

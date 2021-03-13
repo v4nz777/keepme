@@ -1,0 +1,88 @@
+{% load static %}
+
+<div class="profile-container">
+    <div class="profile-avatar-area">
+        <div class="avatar-box">
+            
+            <div id="avatarEditBox">
+                <label for="avatarInput"><img src="{% static 'edit.svg' %}" alt="" id="avatarEdit"></label>
+                <form action="{% url 'change_avatar' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ update_avatar_form }}
+                
+            </div>
+                    <div class="form-submit" id="avatarSubmit">
+                    <button type="submit">SAVE</button>
+                    </div>
+                </form>
+            
+            
+
+            <img src="" alt="" class="avatar" id='avatar'>
+        </div>
+    </div>
+    <div class="profile-details-area">
+        <div class="details-top">
+            {% if request.user %}
+                <a href="{% url 'profile' user=current_user %}" id="currentUser">
+                {{ current_user }}
+                </a>
+            
+            {% endif %}
+            <span class="detail-text" id="email">user@email.com</span>
+        </div>
+        <hr class="profile-separator">
+        <div class="details-bot">
+            <div class="bot-item">
+                <span class="badge-grey">
+                    &nbsp;FROM&nbsp;
+                </span>
+                <div class="centered-item">
+                    <span class="text-center" id="address"></span>
+                </div>
+            </div>
+            {% comment %} <div class="bot-item">
+                <span class="badge-grey">
+                    &nbsp;STATUS&nbsp;
+                </span>
+                <div class="centered-item">
+                    <span class="text-center" id="status">Active</span>
+                </div>
+            </div> {% endcomment %}
+            <div class="bot-item">
+                <span class="badge-grey">
+                    &nbsp;REPUTATION&nbsp;
+                </span>
+                <div class="centered-item rate-hidden" id="rep-0">
+                    <img src="{% static 'star-broken.svg' %}" alt="star0" id="rate0" class="rating-star">
+                </div>
+                <div class="centered-item rate-hidden" id="rep-1">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate1" class="rating-star">
+                </div>
+                <div class="centered-item rate-hidden" id="rep-2">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate1" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate2" class="rating-star">
+                </div>
+                <div class="centered-item rate-hidden" id="rep-3">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate1" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate2" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate3" class="rating-star">
+                </div>
+                <div class="centered-item rate-hidden" id="rep-4">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate1" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate2" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate3" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate4" class="rating-star">
+                </div>
+                <div class="centered-item rate-hidden" id="rep-5">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate1" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate2" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate3" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate4" class="rating-star">
+                    <img src="{% static 'star.svg' %}" alt="star" id="rate5" class="rating-star">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
